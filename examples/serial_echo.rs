@@ -1,26 +1,25 @@
 #![no_main]
 #![no_std]
 
-extern crate cortex_m_rt;
-extern crate panic_halt;
+use panic_halt as _;
 
-extern crate stm32f429i_disc as board;
+use stm32f429i_disc as board;
 
-#[macro_use(block)]
-extern crate nb;
+use nb::block;
 
 use board::hal::prelude::*;
 use board::hal::stm32;
 
 use board::hal::serial::{config::Config, Serial};
 
-use cortex_m_rt::entry;
-
-#[entry]
+#[cortex_m_rt::entry]
 fn main() -> ! {
     if let Some(p) = stm32::Peripherals::take() {
         let gpioa = p.GPIOA.split();
-        let mut rcc = p.RCC.constrain();
+
+        // Constrain clock registers
+        let rcc = p.RCC.constrain();
+
         let clocks = rcc.cfgr.sysclk(180.mhz()).freeze();
 
         // USART2 at PA9(TX) and PA10(RX) are connected to ST-Link

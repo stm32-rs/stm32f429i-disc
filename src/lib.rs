@@ -8,6 +8,6 @@ extern crate cortex_m_rt;
 
 pub use cortex_m::*;
 pub use cortex_m_rt::*;
-pub use hal::stm32::interrupt::*;
-pub use hal::stm32::*;
-pub use hal::*;
+pub use crate::hal::stm32::interrupt::*;
+pub use crate::hal::stm32::*;
+pub use crate::hal::*;

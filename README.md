@@ -11,8 +11,6 @@ It also contains a (non-removable) capable ST-Link V2 debugging interface.
 * A bit of open source software
 
 [STM32F429I-DISC]: https://www.st.com/en/evaluation-tools/32f429idiscovery.html
-[cortex-m]:(https://github.com/japaric/cortex-m)
-[cortex-m-rt]:(https://github.com/japaric/cortex-m-rt)
 
 License
 -------

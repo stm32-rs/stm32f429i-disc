@@ -1,11 +1,9 @@
 #![no_main]
 #![no_std]
 
-extern crate cortex_m;
-extern crate cortex_m_rt;
-extern crate panic_halt;
+use panic_halt as _;
 
-extern crate stm32f429i_disc as board;
+use stm32f429i_disc as board;
 
 use cortex_m_rt::entry;
 
@@ -24,7 +22,7 @@ fn main() -> ! {
         let mut led = gpiod.pg13.into_push_pull_output();
 
         // Constrain clock registers
-        let mut rcc = p.RCC.constrain();
+        let rcc = p.RCC.constrain();
 
         // Configure clock to 180 MHz (i.e. the maximum) and freeze it
         let clocks = rcc.cfgr.sysclk(180.mhz()).freeze();
