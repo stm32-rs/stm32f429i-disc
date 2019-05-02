@@ -16,10 +16,10 @@ use cortex_m::peripheral::Peripherals;
 #[entry]
 fn main() -> ! {
     if let (Some(p), Some(cp)) = (stm32::Peripherals::take(), Peripherals::take()) {
-        let gpiod = p.GPIOG.split();
+        let gpiog = p.GPIOG.split();
 
         // (Re-)configure PG13 (green LED) as output
-        let mut led = gpiod.pg13.into_push_pull_output();
+        let mut led = gpiog.pg13.into_push_pull_output();
 
         // Constrain clock registers
         let rcc = p.RCC.constrain();
@@ -31,19 +31,11 @@ fn main() -> ! {
         let mut delay = Delay::new(cp.SYST, clocks);
 
         loop {
-            // Turn LED on
-            led.set_high();
+            // Toggle LED
+            led.toggle();
 
-            // Delay twice for half a second due to limited timer resolution
-            delay.delay_ms(500_u16);
-            delay.delay_ms(500_u16);
-
-            // Turn LED off
-            led.set_low();
-
-            // Delay twice for half a second due to limited timer resolution
-            delay.delay_ms(500_u16);
-            delay.delay_ms(500_u16);
+            // Delay a second
+            delay.delay_ms(1000_u16);
         }
     }
 
