@@ -7,3 +7,4 @@ Cargo.lock
 bloat_log*
 itm.fifo
 itm.txt
+.vscode
