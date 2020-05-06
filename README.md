@@ -7,6 +7,7 @@ language. This experimentation board features multiple user programmable LEDs
 a gyroscope, an LCD display with resistive touch layer, 64Mbit of memory and a
 user programmable USB connector.
 It also contains a (non-removable) capable ST-Link V2 debugging interface.
+
 * A computer (macOS and Linux work perfectly, Windows should work but was not tested)
 * A bit of open source software
 
