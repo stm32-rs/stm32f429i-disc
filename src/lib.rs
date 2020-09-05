@@ -6,9 +6,9 @@ pub extern crate stm32f4xx_hal as hal;
 extern crate cortex_m;
 extern crate cortex_m_rt;
 
-pub use cortex_m::*;
-pub use cortex_m_rt::*;
 pub use crate::hal::stm32::interrupt::*;
 pub use crate::hal::stm32::*;
 pub use crate::hal::*;
+pub use cortex_m::*;
+pub use cortex_m_rt::*;
 pub mod led;

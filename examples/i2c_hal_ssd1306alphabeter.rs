@@ -7,7 +7,7 @@ use stm32f429i_disc as board;
 
 use ssd1306::displayrotation::DisplayRotation;
 use ssd1306::mode::TerminalMode;
-use ssd1306::Builder;
+use ssd1306::{Builder, I2CDIBuilder};
 
 use board::hal::i2c::*;
 use board::hal::prelude::*;
@@ -44,7 +44,8 @@ fn main() -> ! {
         let i2c = I2c::i2c1(p.I2C1, (scl, sda), 400.khz(), clocks);
 
         // Set up the SSD1306 display at I2C address 0x3c
-        let mut disp: TerminalMode<_> = Builder::new().with_i2c_addr(0x3c).connect_i2c(i2c).into();
+        let interface = I2CDIBuilder::new().init(i2c);
+        let mut disp: TerminalMode<_> = Builder::new().connect(interface).into();
 
         // Set display rotation to 180 degrees
         let _ = disp.set_rotation(DisplayRotation::Rotate180);
