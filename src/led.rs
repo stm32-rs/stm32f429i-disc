@@ -1,5 +1,7 @@
 //! On-board user LEDs
 
+use stm32f4xx_hal as hal; // memory layout
+
 use hal::prelude::*;
 
 use hal::gpio::gpiog::{self, PG, PG13, PG14};
