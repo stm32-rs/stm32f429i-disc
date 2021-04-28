@@ -1,8 +1,6 @@
 #![no_main]
 #![no_std]
 
-use panic_halt as _;
-
 use stm32f429i_disc as board;
 
 use cortex_m_rt::entry;

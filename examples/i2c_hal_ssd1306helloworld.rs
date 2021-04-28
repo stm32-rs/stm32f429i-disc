@@ -1,8 +1,6 @@
 #![no_main]
 #![no_std]
 
-use panic_halt as _;
-
 use stm32f429i_disc as board;
 
 use ssd1306::displayrotation::DisplayRotation;
@@ -41,11 +39,11 @@ fn main() -> ! {
             .set_open_drain();
 
         // Setup I2C1 using the above defined pins at 400kHz bitrate (fast mode)
-        let i2c = I2c::i2c1(p.I2C1, (scl, sda), 400.khz(), clocks);
+        let i2c = I2c::new(p.I2C1, (scl, sda), 400.khz(), clocks);
 
         // Set up the SSD1306 display at I2C address 0x3c
         let interface = I2CDIBuilder::new().init(i2c);
-        let mut disp: TerminalMode<_> = Builder::new().connect(interface).into();
+        let mut disp: TerminalMode<_,_> = Builder::new().connect(interface).into();
 
         // Set display rotation to 180 degrees
         let _ = disp.set_rotation(DisplayRotation::Rotate180);
